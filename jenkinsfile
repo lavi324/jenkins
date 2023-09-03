@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Check out your source code from version control (e.g., Git)
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build your Java project (e.g., compile code)
+                sh 'javac -version' // Replace with your actual build commands
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests on your Java project (e.g., JUnit tests)
+                sh 'java -version' // Replace with your actual test commands
+            }
+        }
+    }
+
+    post {
+        success {
+            // This block is executed when the pipeline succeeds
+            echo 'Pipeline succeeded! Your Java project is built and tested.'
+        }
+
+        failure {
+            // This block is executed when the pipeline fails
+            echo 'Pipeline failed. Check the build and test logs for details.'
+        }
+    }
+}
